@@ -1,16 +1,16 @@
 class DirectionInput {
-  constructor () {
-    this.heldDirections =[];
+  constructor() {
+    this.heldDirections = [];
 
     this.map = {
       "ArrowUp": "up",
-      "ArrowDown": "down",
-      "ArrowLeft": "left",
-      "ArrowRight": "right",
       "KeyW": "up",
+      "ArrowDown": "down",
       "KeyS": "down",
+      "ArrowLeft": "left",
       "KeyA": "left",
-      "KeyD": "right"
+      "ArrowRight": "right",
+      "KeyD": "right",
     }
   }
 
@@ -22,15 +22,17 @@ class DirectionInput {
     document.addEventListener("keydown", e => {
       const dir = this.map[e.code];
       if (dir && this.heldDirections.indexOf(dir) === -1) {
-        this.heldDirections.unshift(dir) // 배열앞에 dir추가
+        this.heldDirections.unshift(dir);
       }
-    })
+    });
     document.addEventListener("keyup", e => {
       const dir = this.map[e.code];
-      const index = this.heldDirections.indexOf(dir)
+      const index = this.heldDirections.indexOf(dir);
       if (index > -1) {
-        this.heldDirections.splice(index, 1)
+        this.heldDirections.splice(index, 1);
       }
     })
+
   }
+
 }

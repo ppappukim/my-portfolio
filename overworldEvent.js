@@ -1,5 +1,5 @@
 class OverworldEvent {
-  constructor({map, event}) {
+  constructor({ map, event}) {
     this.map = map;
     this.event = event;
   }
@@ -17,11 +17,11 @@ class OverworldEvent {
     //Set up a handler to complete when correct person is done walking, then resolve the event
     const completeHandler = e => {
       if (e.detail.whoId === this.event.who) {
-        document.removeEventListener("PersonStandingComplete", completeHandler);
+        document.removeEventListener("PersonStandComplete", completeHandler);
         resolve();
       }
     }
-    document.addEventListener("PersonStandingComplete", completeHandler)
+    document.addEventListener("PersonStandComplete", completeHandler)
   }
 
   walk(resolve) {
@@ -43,6 +43,32 @@ class OverworldEvent {
     }
     document.addEventListener("PersonWalkingComplete", completeHandler)
 
+  }
+
+  textMessage(resolve) {
+
+    if (this.event.faceHero) {
+      const obj = this.map.gameObjects[this.event.faceHero];
+      obj.direction = utils.oppositeDirection(this.map.gameObjects["hero"].direction);
+    }
+
+    const message = new TextMessage({
+      text: this.event.text,
+      onComplete: () => resolve()
+    })
+    message.init( document.querySelector(".game-container") )
+  }
+
+  changeMap(resolve) {
+
+    const sceneTransition = new SceneTransition()
+    sceneTransition.init(document.querySelector(".game-container"), () => {
+      this.map.overworld.startMap(window.OverworldMaps[this.event.map])
+      resolve()
+
+      sceneTransition.fadeOut()
+
+    })
   }
 
   init() {

@@ -1,20 +1,20 @@
 class Overworld {
-  constructor(config) {
-    this.element = config.element;
-    this.canvas = this.element.querySelector(".game-canvas");
-    this.ctx = this.canvas.getContext("2d")
-    this.map = null;
-  }
+ constructor(config) {
+   this.element = config.element;
+   this.canvas = this.element.querySelector(".game-canvas");
+   this.ctx = this.canvas.getContext("2d");
+   this.map = null;
+ }
 
-  startGameLoop () {
+  startGameLoop() {
     const step = () => {
-      // cavas 지우기
-      this.ctx.clearRect(0,0, this.canvas.width, this.canvas.height)
-      
-      // 캐릭터 정중앙
+      //Clear off the canvas
+      this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+      //Establish the camera person
       const cameraPerson = this.map.gameObjects.hero;
 
-      // 모든 오브젝트 위치 업데이트 (*오브젝트 그리기전에 실행해야 움직일때 바운스가 안생김)
+      //Update all objects
       Object.values(this.map.gameObjects).forEach(object => {
         object.update({
           arrow: this.directionInput.direction,
@@ -22,41 +22,64 @@ class Overworld {
         })
       })
 
-      // lower map 그리기
-      this.map.drawLowerImage(this.ctx, cameraPerson)
+      //Draw Lower layer
+      this.map.drawLowerImage(this.ctx, cameraPerson);
 
-      // 오브젝트 그리기
+      //Draw Game Objects
       Object.values(this.map.gameObjects).sort((a,b) => {
         return a.y - b.y;
-      } ).forEach(object => {
+      }).forEach(object => {
         object.sprite.draw(this.ctx, cameraPerson);
       })
 
-      // upper map 그리기
-      this.map.drawUpperImage(this.ctx, cameraPerson)
-
+      //Draw Upper layer
+      this.map.drawUpperImage(this.ctx, cameraPerson);
+      
       requestAnimationFrame(() => {
-        step()
+        step();   
       })
     }
-    step()
-  }
-  init() {
-    this.map = new OverworldMap(window.OverworldMaps.DemoRoom)
-    this.map.mountObjects();
+    step();
+ }
 
-    this.directionInput = new DirectionInput();
-    this.directionInput.init()
-    this.directionInput.direction; // "down"
-    this.startGameLoop()
+ bindActionInput() {
+   new KeyPressListener("Enter", () => {
+     //Is there a person here to talk to?
+     this.map.checkForActionCutscene()
+   })
+ }
 
-    this.map.startCutscene([
-      { who: "hero", type: "walk",  direction: "down" },
-      { who: "hero", type: "walk",  direction: "down" },
-      { who: "npcA", type: "walk",  direction: "left" },
-      { who: "npcA", type: "walk",  direction: "left" },
-      { who: "npcA", type: "stand",  direction: "up", time: 800 },
-    ])
+ bindHeroPositionCheck() {
+   document.addEventListener("PersonWalkingComplete", e => {
+     if (e.detail.whoId === "hero") {
+       //Hero's position has changed
+       this.map.checkForFootstepCutscene()
+     }
+   })
+ }
 
-  }
+ startMap(mapConfig) {
+  this.map = new OverworldMap(mapConfig);
+  this.map.overworld = this;
+  this.map.mountObjects();
+ }
+
+ init() {
+  this.startMap(window.OverworldMaps.Kitchen);
+
+
+  this.bindActionInput();
+  this.bindHeroPositionCheck();
+
+  this.directionInput = new DirectionInput();
+  this.directionInput.init();
+
+  this.startGameLoop();
+
+
+  this.map.startCutscene([
+    // { type: "changeMap", map: "DemoRoom", },
+  ])
+
+ }
 }
