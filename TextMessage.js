@@ -15,7 +15,7 @@ class TextMessage {
       <button class="TextMessage_button">Next</button>
     `)
 
-    // INIT - type effect
+    //Init the typewriter effect
     this.revealingText = new RevealingText({
       element: this.element.querySelector(".TextMessage_p"),
       text: this.text
@@ -33,20 +33,20 @@ class TextMessage {
   }
 
   done() {
+
     if (this.revealingText.isDone) {
       this.element.remove();
       this.actionListener.unbind();
       this.onComplete();
-    }
-    else {
-      this.revealingText.wrapToDone()
+    } else {
+      this.revealingText.warpToDone();
     }
   }
 
   init(container) {
     this.createElement();
-    container.appendChild(this.element)
-    this.revealingText.init()
+    container.appendChild(this.element);
+    this.revealingText.init();
   }
 
 }
