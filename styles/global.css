@@ -21,15 +21,24 @@ body {
 }
 
 .game-container {
-  position: relative; 
-  width: 352px;
-  height: 198px;
+  /* width: 352px;
+  height: 198px; */
   margin: 0 auto;
   outline: 1px solid #fff;
+  height: 100vh;
+  width: 100%;
+  
+  /* transform: scale(3) translateY(50%); */
 
-  transform: scale(3) translateY(50%);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 
 .game-container canvas {
   image-rendering: pixelated;
+  width: 1024px;
+  display: block;
+  /* min-width: 1024px; */
 }

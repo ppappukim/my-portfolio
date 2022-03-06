@@ -18,8 +18,8 @@ class OverworldMap {
   drawLowerImage(ctx, cameraPerson) {
     ctx.drawImage(
       this.lowerImage, 
-      utils.withGrid(10.5) - cameraPerson.x, 
-      utils.withGrid(6) - cameraPerson.y
+      utils.withGrid(1) - cameraPerson.x, 
+      utils.withGrid(1) - cameraPerson.y,
       )
   }
 
@@ -116,76 +116,76 @@ class OverworldMap {
 window.OverworldMaps = {
   DemoRoom: {
     id: "DemoRoom",
-    lowerSrc: "/images/maps/DemoLower.png",
-    upperSrc: "/images/maps/DemoUpper.png",
+    lowerSrc: "/images/maps/room.png",
+    upperSrc: "",
     gameObjects: {
       hero: new Person({
         isPlayerControlled: true,
-        x: utils.withGrid(5),
+        x: utils.withGrid(1),
         y: utils.withGrid(6),
       }),
-      npcA: new Person({
-        x: utils.withGrid(9),
-        y: utils.withGrid(9),
-        src: "/images/characters/people/npc1.png",
-        behaviorLoop: [
-          { type: "walk", direction: "left", },
-          { type: "walk", direction: "down", },
-          { type: "walk", direction: "right", },
-          { type: "walk", direction: "up", },
-          //{ type: "stand", direction: "up", time: 400, },
-        ],
-        talking: [
-          {
-            required: ["TALKED_TO_ERIO"],
-            events: [
-              { type: "textMessage", text: "Isn't Erio the coolest?", faceHero: "npcA" },
-            ]
-          },
-          {
-            events: [
-              { type: "textMessage", text: "I'm going to crush you!", faceHero: "npcA" },
-              // { type: "battle", enemyId: "beth" },
-              // { type: "addStoryFlag", flag: "DEFEATED_BETH"},
-              // { type: "textMessage", text: "You crushed me like weak pepper.", faceHero: "npcA" },
-              // { type: "textMessage", text: "Go away!"},
-               //{ who: "npcB", type: "walk",  direction: "up" },
-            ]
-          }
-        ]
-      }),
-      npcC: new Person({
-        x: utils.withGrid(4),
-        y: utils.withGrid(8),
-        src: "/images/characters/people/npc1.png",
-        behaviorLoop: [
-          { type: "stand", direction: "left", time: 500, },
-          { type: "stand", direction: "down", time: 500, },
-          { type: "stand", direction: "right", time: 500, },
-          { type: "stand", direction: "up", time: 500, },
-        ],
-      }),
-      npcB: new Person({
-        x: utils.withGrid(8),
-        y: utils.withGrid(5),
-        src: "/images/characters/people/erio.png",
-        talking: [
-          {
-            events: [
-              { type: "textMessage", text: "Bahaha!", faceHero: "npcB" },
-              { type: "addStoryFlag", flag: "TALKED_TO_ERIO"}
-              //{ type: "battle", enemyId: "erio" }
-            ]
-          }
-        ]
-        // behaviorLoop: [
-        //   { type: "walk",  direction: "left" },
-        //   { type: "stand",  direction: "up", time: 800 },
-        //   { type: "walk",  direction: "up" },
-        //   { type: "walk",  direction: "right" },
-        //   { type: "walk",  direction: "down" },
-        // ]
-      }),
+      // npcA: new Person({
+      //   x: utils.withGrid(9),
+      //   y: utils.withGrid(9),
+      //   src: "/images/characters/people/npc1.png",
+      //   behaviorLoop: [
+      //     { type: "walk", direction: "left", },
+      //     { type: "walk", direction: "down", },
+      //     { type: "walk", direction: "right", },
+      //     { type: "walk", direction: "up", },
+      //     //{ type: "stand", direction: "up", time: 400, },
+      //   ],
+      //   talking: [
+      //     {
+      //       required: ["TALKED_TO_ERIO"],
+      //       events: [
+      //         { type: "textMessage", text: "Isn't Erio the coolest?", faceHero: "npcA" },
+      //       ]
+      //     },
+      //     {
+      //       events: [
+      //         { type: "textMessage", text: "I'm going to crush you!", faceHero: "npcA" },
+      //         // { type: "battle", enemyId: "beth" },
+      //         // { type: "addStoryFlag", flag: "DEFEATED_BETH"},
+      //         // { type: "textMessage", text: "You crushed me like weak pepper.", faceHero: "npcA" },
+      //         // { type: "textMessage", text: "Go away!"},
+      //          //{ who: "npcB", type: "walk",  direction: "up" },
+      //       ]
+      //     }
+      //   ]
+      // }),
+      // npcC: new Person({
+      //   x: utils.withGrid(4),
+      //   y: utils.withGrid(8),
+      //   src: "/images/characters/people/npc1.png",
+      //   behaviorLoop: [
+      //     { type: "stand", direction: "left", time: 500, },
+      //     { type: "stand", direction: "down", time: 500, },
+      //     { type: "stand", direction: "right", time: 500, },
+      //     { type: "stand", direction: "up", time: 500, },
+      //   ],
+      // }),
+      // npcB: new Person({
+      //   x: utils.withGrid(8),
+      //   y: utils.withGrid(5),
+      //   src: "/images/characters/people/erio.png",
+      //   talking: [
+      //     {
+      //       events: [
+      //         { type: "textMessage", text: "Bahaha!", faceHero: "npcB" },
+      //         { type: "addStoryFlag", flag: "TALKED_TO_ERIO"}
+      //         //{ type: "battle", enemyId: "erio" }
+      //       ]
+      //     }
+      //   ]
+      //   // behaviorLoop: [
+      //   //   { type: "walk",  direction: "left" },
+      //   //   { type: "stand",  direction: "up", time: 800 },
+      //   //   { type: "walk",  direction: "up" },
+      //   //   { type: "walk",  direction: "right" },
+      //   //   { type: "walk",  direction: "down" },
+      //   // ]
+      // }),
       pizzaStone: new PizzaStone({
         x: utils.withGrid(2),
         y: utils.withGrid(7),

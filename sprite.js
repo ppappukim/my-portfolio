@@ -72,8 +72,8 @@ class Sprite {
   
 
   draw(ctx, cameraPerson) {
-    const x = this.gameObject.x - 8 + utils.withGrid(10.5) - cameraPerson.x;
-    const y = this.gameObject.y - 18 + utils.withGrid(6) - cameraPerson.y;
+    const x = this.gameObject.x - 16 + utils.withGrid(8) - cameraPerson.x;
+    const y = this.gameObject.y + utils.withGrid(3) - cameraPerson.y;
 
     this.isShadowLoaded && ctx.drawImage(this.shadow, x, y);
 
@@ -81,10 +81,10 @@ class Sprite {
     const [frameX, frameY] = this.frame;
 
     this.isLoaded && ctx.drawImage(this.image,
-      frameX * 32, frameY * 32,
-      32,32,
+      frameX * 64, frameY * 64,
+      64,64,
       x,y,
-      32,32
+      64,64
     )
 
     this.updateAnimationProgress();
