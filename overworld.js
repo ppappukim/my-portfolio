@@ -1,8 +1,11 @@
 class Overworld {
  constructor(config) {
    this.element = config.element;
-   this.canvas = this.element.querySelector(".game-canvas");
+   this.canvas = this.element.querySelector(".person-canvas");
+   this.mapContainer = this.element.querySelector(".map-container");
+   this.canvasMap = this.element.querySelector(".map-canvas");
    this.ctx = this.canvas.getContext("2d");
+   this.ctxMap = this.canvasMap.getContext("2d");
    this.map = null;
  }
 
@@ -10,6 +13,7 @@ class Overworld {
     const step = () => {
       //Clear off the canvas
       this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+      this.ctxMap.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
       const cameraPerson = this.map.gameObjects.hero;
 
@@ -23,17 +27,21 @@ class Overworld {
       
 
       //Draw Lower layer
-      this.map.drawLowerImage(this.ctx, cameraPerson);
+      this.map.drawLowerImage(this.ctxMap, this.canvasMap, this.mapContainer, cameraPerson);
+
+      //Draw Hero
+      this.map.gameObjects.hero.sprite.draw(this.ctx, cameraPerson);
 
       //Draw Game Objects
       Object.values(this.map.gameObjects).sort((a,b) => {
         return a.y - b.y;
       }).forEach(object => {
+        if (object.id === "hero") return 
         object.sprite.draw(this.ctx, cameraPerson);
       })
-
+            
       //Draw Upper layer
-      this.map.drawUpperImage(this.ctx, cameraPerson);
+      this.map.drawUpperImage(this.ctxMap, cameraPerson);
       
       if (!this.map.isPaused) {
         requestAnimationFrame(() => {
@@ -70,6 +78,7 @@ class Overworld {
  startMap(mapConfig, heroInitialState=null) {
   this.map = new OverworldMap(mapConfig);
   this.map.overworld = this;
+
   this.map.mountObjects();
 
   if (heroInitialState) {
@@ -85,8 +94,6 @@ class Overworld {
   this.progress.startingHeroX = this.map.gameObjects.hero.x;
   this.progress.startingHeroY = this.map.gameObjects.hero.y;
   this.progress.startingHeroDirection = this.map.gameObjects.hero.direction;
-
-  console.log(this.map.walls)
 
  }
 

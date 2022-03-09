@@ -13,22 +13,24 @@
 }
 
 body {
-  background: #333;
+  background: #a48f7c;
   padding: 0;
   margin: 0;
   overflow: hidden;
   font-family: 'Ribeye', cursive;
 }
+.overworld {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+}
 
 .game-container {
-  /* width: 352px;
-  height: 198px; */
-  margin: 0 auto;
-  outline: 1px solid #fff;
-  height: 100vh;
-  width: 100%;
-  
-  /* transform: scale(3) translateY(50%); */
+  transform: scale(3);
+  /* transform: scale(.5); */
 
   display: flex;
   flex-direction: row;
@@ -38,7 +40,10 @@ body {
 
 .game-container canvas {
   image-rendering: pixelated;
-  width: 1024px;
-  display: block;
-  /* min-width: 1024px; */
+}
+.map-container {
+  position: absolute;
+}
+.person-canvas {
+  position: absolute;
 }

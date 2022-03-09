@@ -26,7 +26,7 @@ class OverworldEvent {
 
   walk(resolve) {
     const who = this.map.gameObjects[ this.event.who ];
-    who.startBehavior({
+    who?.startBehavior({
       map: this.map
     }, {
       type: "walk",
@@ -60,9 +60,9 @@ class OverworldEvent {
   }
 
   changeMap(resolve) {
-
+    console.log(window.OverworldMaps[this.event.map]);
     const sceneTransition = new SceneTransition();
-    sceneTransition.init(document.querySelector(".game-container"), () => {
+    sceneTransition.init(document.querySelector(".overworld"), async () => {
       this.map.overworld.startMap( window.OverworldMaps[this.event.map], {
         x: this.event.x,
         y: this.event.y,
@@ -70,7 +70,13 @@ class OverworldEvent {
       });
       resolve();
 
-      sceneTransition.fadeOut();
+      await sceneTransition.fadeOut();
+
+      //Change Background Color - Kitchen
+      if (window.OverworldMaps[this.event.map].id === "Kitchen") {
+        let overworld = document.querySelector(".overworld")
+        overworld.style.background = "#94C1CF"
+      }
 
     })
   }

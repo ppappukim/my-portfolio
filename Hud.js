@@ -15,7 +15,6 @@ class Hud {
       this.element.remove();
       this.scoreboards = [];
     }
-
     this.element = document.createElement("div");
     this.element.classList.add("Hud");
 
@@ -36,7 +35,8 @@ class Hud {
 
   init(container) {
     this.createElement();
-    container.appendChild(this.element);
+    let overworld = document.querySelector(".overworld");
+    overworld.appendChild(this.element);
 
     document.addEventListener("PlayerStateUpdated", () => {
       this.update();
