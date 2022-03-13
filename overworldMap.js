@@ -137,7 +137,7 @@ window.OverworldMaps = {
       hero: new Person({
         isPlayerControlled: true,
         x: utils.withGrid(0),
-        y: utils.withGrid(0),
+        y: utils.withGrid(1),
       }),
       // npcA: new Person({
       //   x: utils.withGrid(5),

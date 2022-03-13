@@ -1,8 +1,10 @@
 .Hud {
   position: absolute;
-  left:2px;
+  left:10px;
   top:10px;
   image-rendering: pixelated;
+  transform: scale(3.2);
+  transform-origin: 0 0;
 }
 
 .Hud .Combatant {

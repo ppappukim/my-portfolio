@@ -1,26 +1,23 @@
 .TitleScreen {
-  /* position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  background: #000; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .TitleScreen_logo {
-  display: block;
-  margin: 0 auto;
-  width: 128px;
+  transform: scale(5);
+  transform-origin: bottom;
   image-rendering: pixelated;
+  margin-top: 100px;
+}
+.title {
+  font-size: 42px;
+  color: #fff;
+  /* border: 3px solid #fff; */
+  padding: 10px 30px;
 }
 
-.TitleScreen .KeyboardMenu {
-  position: relative;
-  width: 100px;
-  margin: 0 auto;
-  background: transparent;
-  border: 0;
-}
 .TitleScreen button {
   color: #fff;
   justify-content: center;
@@ -28,8 +25,6 @@
 }
 
 .TitleScreen .DescriptionBox {
-  background: transparent;
-  color: #fff;
-  border: 0;
   text-align: center;
+  font-size: 32px;
 }
