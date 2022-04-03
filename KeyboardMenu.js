@@ -11,19 +11,15 @@ class KeyboardMenu {
   setOptions(options) {
     this.options = options;
     this.element.innerHTML = this.options.map((option, index) => {
-      console.log(index);
       const disabledAttr = option.disabled ? "disabled" : "";
       const defaultSelect = index === 0 ? "select" : ""
       return (`
         <div class="option ${defaultSelect}">
-          <div class="arrow">
-            <img src="/images/arrow.svg">
-          </div>
           <div ${disabledAttr} data-button="${index}" data-description="${option.description}">
             ${option.label}
           </div>
           <span class="right">${option.right ? option.right() : ""}</span>
-        </div>
+        </div>    
       `)
     }).join("");
 
@@ -101,6 +97,22 @@ class KeyboardMenu {
   createElement() {
       this.element = document.createElement("div");
       this.element.classList.add("KeyboardMenu");
+      this.element.innerHTML = (`
+      <div class="screen-header">
+        <div class="header-part1"></div>
+        <div class="header-part2"></div>
+        <div class="header-part3"></div>
+        <div class="header-dot1"></div>
+        <div class="header-dot2"></div>
+        <div class="header-dot3"></div>
+      </div>
+      <div class="screen-body">
+        <div class="title">
+          <img class="bubbo" src="/images/bubbo.svg" alt="Bubbo Portfolio" />
+          <img class="portfolio" src="/images/portfolio.svg" alt="Bubbo Portfolio" />
+        </div>
+      </div>
+    `)
   }
 
   end() {

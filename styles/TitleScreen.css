@@ -3,13 +3,70 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 500px;
+  background-color: #fff;
+  border: solid 3px black;
+  box-shadow: 20px 20px rgba(0, 0, 0, 0.2);
 }
-
-.TitleScreen_logo {
-  transform: scale(5);
-  transform-origin: bottom;
+.screen-wrapper {
+  
+  width: 100%;
+}
+.screen-header {
+  position: relative;
+  width: 100%;
+}
+.header-part1 {
+  height: 9px;
+  background: #B8CEDF;
+}
+.header-part2 {
+  height: 6px;
+  background: #8596a2;
+}
+.header-part3 {
+  height: 3px;
+  background: #3A4B59;
+}
+.header-dot1 {
+  position: absolute;
+  left: 5px;
+  bottom: 5px;
+  height: 8px;
+  width: 8px;
+  background: #FD6868;
+}
+.header-dot2 {
+  position: absolute;
+  left: 18px;
+  bottom: 5px;
+  height: 8px;
+  width: 8px;
+  background: #00B67F;
+}
+.header-dot3 {
+  position: absolute;
+  left: 32px;
+  bottom: 5px;
+  height: 8px;
+  width: 8px;
+  background: #FDEE68;
+}
+.title {
+  width: 420px;
+  margin-top: 30px;
   image-rendering: pixelated;
-  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+}
+.bubbo {
+  transform-origin: top;
+  /* transform: scale(3); */
+}
+.portfolio {
+  transform-origin: top;
+  margin-top: -20px;
+  /* transform: scale(2.5); */
 }
 .title {
   font-size: 42px;
@@ -27,4 +84,10 @@
 .TitleScreen .DescriptionBox {
   text-align: center;
   font-size: 32px;
+}
+
+.copyright {
+  margin-top: 50px;
+  margin-bottom: 14px;
+  font-size: 18px;
 }

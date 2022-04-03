@@ -2,10 +2,11 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
-  grid-gap: 20px;
-  font-size: 48px;
-  color: white;
+  align-items: center;
+  grid-gap: 14px;
+  font-size: 42px;
+  color: rgb(0, 0, 0);
+  margin-top: 50px;
 
 }
 .KeyboardMenu button {
@@ -23,11 +24,14 @@
   grid-gap: 20px;
   cursor: pointer;
  }
- .KeyboardMenu .option.select .arrow {
+ .KeyboardMenu .option.select {
    opacity: 1;
+   translate: border;
    animation-name: blink;
    animation-duration: 1s;
    animation-iteration-count: infinite;
+   color: #1955D9;
+
  }
  .KeyboardMenu .option .right {
   position: absolute;
@@ -40,7 +44,7 @@
   padding-right: 3px;
  }
 
- .KeyboardMenu .arrow {
+ /* .KeyboardMenu .arrow {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -48,7 +52,7 @@
   transform: scale(3.5);
   transform-origin: right;
   opacity: 0;
- }
+ } */
 
  /* .DescriptionBox {
   position:absolute;
