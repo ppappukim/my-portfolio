@@ -7,7 +7,6 @@ class TitleScreen {
     return [
       { 
         label: "Start",
-        description: "Start a new pizza adventure!",
         handler: () => {
           this.close();
           this.sound.sfx.gameStart.play()
@@ -17,18 +16,16 @@ class TitleScreen {
       },
       { 
         label: "About",
-        description: "Start a new pizza adventure!",
         handler: () => {
-          this.close();
-          resolve();
+          // this.close();
+          // resolve();
         }
       },
       { 
         label: "Contact",
-        description: "Start a new pizza adventure!",
         handler: () => {
-          this.close();
-          resolve();
+          // this.close();
+          // resolve();
         }
       },
       // safeFile ? {
@@ -91,6 +88,44 @@ class TitleScreen {
     `)
     this.element.appendChild(this.screenBottomElement);
   }
+  aboutElemnet() {
+    this.aboutElement = document.createElement("div");
+    this.aboutElement.classList.add("about");
+    this.aboutElement.innerHTML = (`
+      <div class="screen-header">
+        <div class="header-part1"></div>
+        <div class="header-part2"></div>
+        <div class="header-part3"></div>
+        <div class="header-dot1"></div>
+        <div class="header-dot2"></div>
+        <div class="header-dot3"></div>
+      </div>
+      <div class="screen-body">
+        <div class="title">About</div>
+        <div class="body">
+          <div class="row">
+            <div class="r-title">Name</div>
+            <div class="r-desc">Bobby Kim</div>
+          </div>
+          <div class="row">
+            <div class="r-title">Birthday</div>
+            <div class="r-desc">1989 Nov 26</div>
+          </div>
+          <div class="row">
+            <div class="r-title">Gender</div>
+            <div class="r-desc">Male</div>
+          </div>
+          <div class="row">
+            <div class="r-title">From</div>
+            <div class="r-desc">Seoul, Korea</div>
+          </div>
+          <div class="row">
+          <div style="margin-top:20px;">#################################</div>
+        </div>                        
+        </div>
+      </div>
+    `)
+  }
 
   close() {
     this.keyboardMenu.end();
@@ -101,10 +136,12 @@ class TitleScreen {
     return new Promise(resolve => {
       this.createElement();
       this.createSoundELement()
+      this.aboutElemnet()
       let overworld = document.getElementsByClassName("overworld")[0]
       overworld.style.background = "#1955D9"
       overworld.appendChild(this.element);
       overworld.appendChild(this.soundElement);
+      overworld.appendChild(this.aboutElement);
 
       // sound
       this.sound = new Sound();

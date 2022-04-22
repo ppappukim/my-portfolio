@@ -69,8 +69,8 @@ class KeyboardMenu {
         if (this.currentIndex === index) array[this.currentIndex].classList.add("select")
         else option.classList.remove("select")
       })
+      return
     }
-    if (direction === "hover") return
 
     array.map((option, index) => {
       if (option.classList.contains("select")) {
@@ -145,6 +145,7 @@ class KeyboardMenu {
     })
     this.element.addEventListener("mouseover", (e) => {
       console.log("hover");
+      this.sound.sfx.changeList.play()
       this.checkSelectButton("hover", e)
     })
 

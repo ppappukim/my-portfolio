@@ -91,3 +91,39 @@
   margin-bottom: 14px;
   font-size: 18px;
 }
+
+
+/*********/
+/* ABOUT */
+/*********/
+
+.about {
+  position: fixed;
+  border: solid 3px black;
+  box-shadow: 20px 20px rgba(0, 0, 0, 0.2);
+}
+.about .screen-body {
+  padding: 30px;
+}
+.about .title {
+  margin: 0;
+  font-size: 48px;
+  color: black;
+  text-align: center;
+}
+.about .body {
+  font-size: 32px;
+  display: flex;
+  flex-direction: column;
+  grid-gap: 10px;
+}
+.about .screen-body {
+  background-color: white;
+  text-align: center;
+}
+.about .row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
