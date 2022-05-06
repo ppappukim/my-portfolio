@@ -1,4 +1,5 @@
 .TitleScreen {
+  position: absolute;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -115,13 +116,48 @@
   font-size: 32px;
   display: flex;
   flex-direction: column;
-  grid-gap: 10px;
+  gap: 10px;
 }
 .about .screen-body {
   background-color: white;
   text-align: center;
 }
 .about .row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/***********/
+/* CONTACT */
+/***********/
+
+.contact {
+  position: fixed;
+  border: solid 3px black;
+  box-shadow: 20px 20px rgba(0, 0, 0, 0.2);
+}
+.contact .screen-body {
+  padding: 30px;
+}
+.contact .title {
+  margin: 0;
+  font-size: 48px;
+  color: black;
+  text-align: center;
+}
+.contact .body {
+  font-size: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.contact .screen-body {
+  background-color: white;
+  text-align: center;
+}
+.contact .row {
   display: flex;
   flex-direction: row;
   justify-content: space-between;

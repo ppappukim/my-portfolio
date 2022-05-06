@@ -144,7 +144,6 @@ class KeyboardMenu {
       this.sound.sfx.changeList.play()
     })
     this.element.addEventListener("mouseover", (e) => {
-      console.log("hover");
       this.sound.sfx.changeList.play()
       this.checkSelectButton("hover", e)
     })

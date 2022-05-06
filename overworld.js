@@ -37,11 +37,11 @@ class Overworld {
         return a.y - b.y;
       }).forEach(object => {
         if (object.id === "hero") return 
-        object.sprite.draw(this.ctx, cameraPerson);
+        object.sprite.draw(this.canvasMap, cameraPerson);
       })
             
       //Draw Upper layer
-      this.map.drawUpperImage(this.ctxMap, cameraPerson);
+      // this.map.drawUpperImage(this.ctxMap, cameraPerson);
       
       if (!this.map.isPaused) {
         requestAnimationFrame(() => {

@@ -11,21 +11,47 @@ class TitleScreen {
           this.close();
           this.sound.sfx.gameStart.play()
           this.sound.music.playing.play()
+          let overworld = document.getElementsByClassName("overworld")[0]
+          overworld.style.background = "#bda696"
           resolve();
         }
       },
       { 
         label: "About",
         handler: () => {
-          // this.close();
-          // resolve();
+          if (this.aboutElement) return
+          this.creaeteAboutElement()
+          let overworld = document.getElementsByClassName("overworld")[0]
+          overworld.appendChild(this.aboutElement);
+          document.getElementById('aboutCloseButton').addEventListener('click', () => {
+            this.aboutElement.remove()
+            this.aboutElement = null
+          }, { once: true })
+          window.addEventListener('keydown', (e) => {
+            if (!this.aboutElement) return
+            if (e.keyCode !== 27) return
+            this.aboutElement.remove()
+            this.aboutElement = null
+          })
         }
       },
       { 
         label: "Contact",
         handler: () => {
-          // this.close();
-          // resolve();
+          if (this.contactElement) return
+          this.creaeteContactElement()
+          let overworld = document.getElementsByClassName("overworld")[0]
+          overworld.appendChild(this.contactElement);
+          document.getElementById('contactCloseButton').addEventListener('click', () => {
+            this.contactElement.remove()
+            this.contactElement = null
+          }, { once: true })
+          window.addEventListener('keydown', (e) => {
+            if (!this.contactElement) return
+            if (e.keyCode !== 27) return
+            this.contactElement.remove()
+            this.contactElement = null
+          })
         }
       },
       // safeFile ? {
@@ -88,7 +114,7 @@ class TitleScreen {
     `)
     this.element.appendChild(this.screenBottomElement);
   }
-  aboutElemnet() {
+  creaeteAboutElement() {
     this.aboutElement = document.createElement("div");
     this.aboutElement.classList.add("about");
     this.aboutElement.innerHTML = (`
@@ -103,9 +129,9 @@ class TitleScreen {
       <div class="screen-body">
         <div class="title">About</div>
         <div class="body">
-          <div class="row">
+          <div style="padding-top:30px" class="row">
             <div class="r-title">Name</div>
-            <div class="r-desc">Bobby Kim</div>
+            <div class="r-desc">Bubbo Kim</div>
           </div>
           <div class="row">
             <div class="r-title">Birthday</div>
@@ -115,13 +141,39 @@ class TitleScreen {
             <div class="r-title">Gender</div>
             <div class="r-desc">Male</div>
           </div>
-          <div class="row">
+          <div style="padding-bottom:30px" class="row">
             <div class="r-title">From</div>
-            <div class="r-desc">Seoul, Korea</div>
+            <div class="r-desc">Seoul Korea</div>
           </div>
-          <div class="row">
-          <div style="margin-top:20px;">#################################</div>
-        </div>                        
+          <div id="aboutCloseButton" class="g-button">CLOSE</div>                       
+        </div>
+      </div>
+    `)
+  }
+  creaeteContactElement() {
+    this.contactElement = document.createElement("div");
+    this.contactElement.classList.add("contact");
+    this.contactElement.innerHTML = (`
+      <div class="screen-header">
+        <div class="header-part1"></div>
+        <div class="header-part2"></div>
+        <div class="header-part3"></div>
+        <div class="header-dot1"></div>
+        <div class="header-dot2"></div>
+        <div class="header-dot3"></div>
+      </div>
+      <div class="screen-body">
+        <div class="title">Contact</div>
+        <div class="body">
+          <div style="padding-top:30px" class="row">
+            <div class="r-title">Email</div>
+            <div class="r-desc">rlaqjqqh2@gmail.com</div>
+          </div>
+          <div style="padding-bottom:30px" class="row">
+            <div class="r-title">Phone</div>
+            <div class="r-desc">01055904096</div>
+          </div>
+          <div id="contactCloseButton" class="g-button">CLOSE</div>                       
         </div>
       </div>
     `)
@@ -136,12 +188,11 @@ class TitleScreen {
     return new Promise(resolve => {
       this.createElement();
       this.createSoundELement()
-      this.aboutElemnet()
       let overworld = document.getElementsByClassName("overworld")[0]
       overworld.style.background = "#1955D9"
       overworld.appendChild(this.element);
       overworld.appendChild(this.soundElement);
-      overworld.appendChild(this.aboutElement);
+      
 
       // sound
       this.sound = new Sound();

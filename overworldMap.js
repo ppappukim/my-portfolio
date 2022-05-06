@@ -25,7 +25,7 @@ class OverworldMap {
     ctxMap.drawImage(
       this.lowerImage, 
       0,
-      0
+      0,
       // utils.withGrid(1) - cameraPerson.x, 
       // utils.withGrid(1) - cameraPerson.y,
     )
@@ -36,18 +36,16 @@ class OverworldMap {
 
   }
 
-  drawUpperImage(ctx, cameraPerson) {
-    ctx.drawImage(
-      this.upperImage, 
-      utils.withGrid(10.5) - cameraPerson.x, 
-      utils.withGrid(6) - cameraPerson.y
-    )
-  } 
+  // drawUpperImage(ctx, cameraPerson) {
+  //   ctx.drawImage(
+  //     this.upperImage, 
+  //     utils.withGrid(10) - cameraPerson.x, 
+  //     utils.withGrid(6) - cameraPerson.y
+  //   )
+  // } 
 
   isSpaceTaken(currentX, currentY, direction) {
-    console.log(currentX, currentY);
     const {x,y} = utils.nextPosition(currentX, currentY, direction);
-    console.log(this.walls[`${x},${y}`]);
     return this.walls[`${x},${y}`] || false;
   }
 
@@ -269,8 +267,8 @@ window.OverworldMaps = {
               map: "Kitchen",
 
               // Initial Positon
-              x: utils.withGrid(0),
-              y: utils.withGrid(0), 
+              x: utils.withGrid(-7),
+              y: utils.withGrid(6), 
               direction: "right"
             }
           ]
@@ -282,17 +280,17 @@ window.OverworldMaps = {
   Kitchen: {
     id: "Kitchen",
     lowerSrc: "/images/maps/kitchen.png",
-    upperSrc: "/images/maps/KitchenUpper.png",
+    upperSrc: "",
     gameObjects: {
       hero: new Person({
         isPlayerControlled: true,
-        x: utils.withGrid(5),
-        y: utils.withGrid(5),
+        // x: utils.withGrid(1),
+        // y: utils.withGrid(1),
       }),
       npcB: new Person({
-        x: utils.withGrid(10),
-        y: utils.withGrid(8),
-        src: "/images/characters/people/npc3.png",
+        x: utils.withGrid(5),
+        y: utils.withGrid(5),
+        src: "/images/characters/people/hero.png",
         talking: [
           {
             events: [
@@ -302,16 +300,97 @@ window.OverworldMaps = {
         ]
       })
     },
+    walls: {
+      //Walls
+      [utils.asGridCoord(-8,6)] : true,
+
+      //Walls Left
+      [utils.asGridCoord(-7,5)] : true,
+      [utils.asGridCoord(-7,4)] : true,
+      [utils.asGridCoord(-7,3)] : true,
+      [utils.asGridCoord(-7,2)] : true,
+      [utils.asGridCoord(-7,1)] : true,
+      [utils.asGridCoord(-7,0)] : true,
+      [utils.asGridCoord(-7,-1)] : true,
+
+      //Walls Bottom
+      [utils.asGridCoord(-7,7)] : true,
+      [utils.asGridCoord(-6,7)] : true,
+      [utils.asGridCoord(-5,7)] : true,
+      [utils.asGridCoord(-4,7)] : true,
+      [utils.asGridCoord(-3,7)] : true,
+      [utils.asGridCoord(-2,7)] : true,
+      [utils.asGridCoord(-1,7)] : true,
+      [utils.asGridCoord(0,7)] : true,
+      [utils.asGridCoord(1,7)] : true,
+      [utils.asGridCoord(2,7)] : true,
+      [utils.asGridCoord(3,7)] : true,
+      [utils.asGridCoord(4,7)] : true,
+      [utils.asGridCoord(5,7)] : true,
+      [utils.asGridCoord(6,7)] : true,
+      [utils.asGridCoord(7,7)] : true,
+      [utils.asGridCoord(8,7)] : true,
+      [utils.asGridCoord(9,7)] : true,
+
+      //Walls Right
+      [utils.asGridCoord(10,6)] : true,
+      [utils.asGridCoord(10,5)] : true,
+      [utils.asGridCoord(10,4)] : true,
+      [utils.asGridCoord(10,3)] : true,
+      [utils.asGridCoord(10,2)] : true,
+      [utils.asGridCoord(10,1)] : true,
+      [utils.asGridCoord(10,0)] : true,
+      [utils.asGridCoord(10,-1)] : true,
+
+      //Walls Top
+      [utils.asGridCoord(9,-2)] : true,
+      [utils.asGridCoord(8,-2)] : true,
+      [utils.asGridCoord(7,-2)] : true,
+      [utils.asGridCoord(6,-2)] : true,
+      [utils.asGridCoord(5,-2)] : true,
+      [utils.asGridCoord(4,-2)] : true,
+      [utils.asGridCoord(3,-2)] : true,
+      [utils.asGridCoord(2,-2)] : true,
+      [utils.asGridCoord(1,-2)] : true,
+      [utils.asGridCoord(0,-2)] : true,
+      [utils.asGridCoord(-1,-2)] : true,
+      [utils.asGridCoord(-2,-2)] : true,
+      [utils.asGridCoord(-3,-2)] : true,
+      [utils.asGridCoord(-4,-2)] : true,
+      [utils.asGridCoord(-5,-2)] : true,
+      [utils.asGridCoord(-6,-2)] : true,
+
+      //Tables
+      [utils.asGridCoord(-5,0)] : true,
+      [utils.asGridCoord(-5,1)] : true,
+      [utils.asGridCoord(-4,0)] : true,
+      [utils.asGridCoord(-4,1)] : true,
+
+      [utils.asGridCoord(-1,0)] : true,
+      [utils.asGridCoord(-1,1)] : true,
+      [utils.asGridCoord(0,0)] : true,
+      [utils.asGridCoord(0,1)] : true,
+
+      [utils.asGridCoord(3,0)] : true,
+      [utils.asGridCoord(3,1)] : true,
+      [utils.asGridCoord(4,0)] : true,
+      [utils.asGridCoord(4,1)] : true,
+
+      [utils.asGridCoord(7,0)] : true,
+      [utils.asGridCoord(7,1)] : true,
+      [utils.asGridCoord(8,0)] : true,
+      [utils.asGridCoord(8,1)] : true,
+    },
     cutsceneSpaces: {
-      [utils.asGridCoord(5,10)]: [
+      [utils.asGridCoord(-7,6)]: [
         {
           events: [
             { 
               type: "changeMap", 
-              map: "Street",
-              x: utils.withGrid(29),
-              y: utils.withGrid(9), 
-              direction: "down"
+              map: "DemoRoom",
+              x: utils.withGrid(4),
+              y: utils.withGrid(4), 
+              direction: "left"
             }
           ]
         }

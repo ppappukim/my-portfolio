@@ -31,7 +31,7 @@ class Sound {
     this.sfx = {
       changeList: new Howl({
         src: [
-          'assets/sounds/movetext.wav'
+          'assets/sounds/pressKeyboard.wav'
         ],
         // autoplay: true,
       }),
