@@ -7,7 +7,7 @@ class TitleScreen {
         'assets/sounds/intro.mp3'
       ],
       autoplay: true,
-      // loop: true,
+      loop: true,
     })
   }
 
@@ -197,6 +197,7 @@ class TitleScreen {
 
   close() {
     this.intro.pause()
+    this.sound.music.playing.play()
     this.keyboardMenu.end();
     this.element.remove();
   }
@@ -212,15 +213,17 @@ class TitleScreen {
       overworld.appendChild(this.soundElement);
 
       // Sound
+        // //Create a new Sound
+      // this.Sound.init()
+      // Default volume
+      Howler.volume(.5);
+      this.sound = new Sound();
+      this.sound.volumeUpDown()
+      this.sound.volumeMute() 
       if (!this.intro.playing()) this.intro.play()
-      this.soundGlobal = new Sound();
-      this.soundGlobal.volumeUpDown()
-      this.soundGlobal.volumeMute()
-
-
 
       // Keyboard Menu
-      this.keyboardMenu = new KeyboardMenu({});
+      this.keyboardMenu = new KeyboardMenu();
       this.keyboardMenu.init(this.element);
       this.keyboardMenu.setOptions(this.getOptions(resolve))
       container.appendChild(this.element);

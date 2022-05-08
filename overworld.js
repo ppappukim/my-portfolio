@@ -108,11 +108,9 @@ class Overworld {
   this.titleScreen = new TitleScreen({
     progress: this.progress
   })
+  
 
   await this.titleScreen.init(container);
-
-  // //Create a new Sound
-  // this.Sound.init()
 
   //Potentially load saved data
   let initialHeroState = null;
@@ -154,9 +152,6 @@ class Overworld {
     { type: "textMessage", text: "I'm a designer and developer."},
     { type: "textMessage", text: "This is my portfolio world. Enjoy!"}
   ])
-  this.sound = new Sound();
-  this.sound.sfx.gameStart.play()
-  this.sound.music.playing.play()
 
  }
 }

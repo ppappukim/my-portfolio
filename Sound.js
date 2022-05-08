@@ -1,8 +1,6 @@
 
 class Sound {
   constructor () {
-    // Default
-    Howler.volume(.5);
 
     // Init
     this.up = document.querySelector(".sound-volume-up")
@@ -49,12 +47,6 @@ class Sound {
           'assets/sounds/changeMap.wav'
         ],
       }),
-      walking: new Howl({
-        src: [
-          'assets/sounds/walking.wav'
-        ],
-        loop: true,
-      })
     }
   }
 
