@@ -12,13 +12,13 @@ class Sound {
 
     // music
     this.music = {
-      intro: new Howl({
-        src: [
-          'assets/sounds/intro.mp3'
-        ],
-        autoplay: true,
-        loop: true,
-      }),
+      // intro: new Howl({
+      //   src: [
+      //     'assets/sounds/intro.mp3'
+      //   ],
+      //   autoplay: true,
+      //   // loop: true,
+      // }),
       playing: new Howl({
         src: [
           'assets/sounds/playing.mp3'
@@ -29,17 +29,31 @@ class Sound {
 
     // sound effect
     this.sfx = {
-      changeList: new Howl({
+      pressKey: new Howl({
         src: [
           'assets/sounds/pressKeyboard.wav'
         ],
-        // autoplay: true,
       }),
       gameStart: new Howl({
         src: [
           'assets/sounds/gameStart.wav'
         ],
-        // autoplay: true,
+      }),
+      textEntry: new Howl({
+        src: [
+          'assets/sounds/textEntry.wav'
+        ],
+      }),
+      changeMap: new Howl({
+        src: [
+          'assets/sounds/changeMap.wav'
+        ],
+      }),
+      walking: new Howl({
+        src: [
+          'assets/sounds/walking.wav'
+        ],
+        loop: true,
       })
     }
   }

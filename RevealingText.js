@@ -14,6 +14,8 @@ class RevealingText {
 
     if (list.length > 0) {
       this.timeout = setTimeout(() => {
+        this.sound = new Sound
+        this.sound.sfx.textEntry.play()
         this.revealOneCharacter(list)
       }, next.delayAfter)
     } else {

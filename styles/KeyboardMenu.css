@@ -6,13 +6,24 @@
   grid-gap: 14px;
   font-size: 42px;
   color: rgb(0, 0, 0);
-  margin-top: 50px;
-
+  margin-top: 20px;
+  width: 100%;
 }
 .KeyboardMenu button {
- cursor:pointer;
+    border: none;
+    padding: 7px 0px;
+    cursor: pointer;
+    border: none;
+    background-color: inherit;
+    font-family: inherit;
+    font-size: 42px;
+    display: block;
+    width: 100%;
+    margin: 0px 30px;
 }
 .KeyboardMenu button:focus {
+  box-shadow: 2.5px 2.5px 0px 2.5px #1955D9, -2.5px -2.5px 0px 2.5px #3978ff;
+  outline: solid -2px #90b3ff;
 }
 
 .KeyboardMenu .option {
@@ -23,6 +34,7 @@
   align-items: center;
   grid-gap: 20px;
   cursor: pointer;
+  width: 100%;
  }
  .KeyboardMenu .option.select {
    opacity: 1;

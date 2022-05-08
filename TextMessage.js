@@ -33,7 +33,6 @@ class TextMessage {
   }
 
   done() {
-
     if (this.revealingText.isDone) {
       this.element.remove();
       this.actionListener.unbind();

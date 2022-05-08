@@ -8,9 +8,9 @@
   background-color: #fff;
   border: solid 3px black;
   box-shadow: 20px 20px rgba(0, 0, 0, 0.2);
+  transform: scale(0.3);
 }
 .screen-wrapper {
-  
   width: 100%;
 }
 .screen-header {
@@ -76,19 +76,13 @@
   padding: 10px 30px;
 }
 
-.TitleScreen button {
-  color: #fff;
-  justify-content: center;
-  padding:0;
-}
-
 .TitleScreen .DescriptionBox {
   text-align: center;
   font-size: 32px;
 }
 
 .copyright {
-  margin-top: 50px;
+  margin-top: 30px;
   margin-bottom: 14px;
   font-size: 18px;
 }

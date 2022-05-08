@@ -56,11 +56,14 @@ class OverworldEvent {
       text: this.event.text,
       onComplete: () => resolve()
     })
-    message.init( document.querySelector(".game-container") )
+    message.init( document.querySelector(".overworld") )
   }
 
   changeMap(resolve) {
-    console.log(window.OverworldMaps[this.event.map]);
+
+    this.sound = new Sound
+    this.sound.sfx.changeMap.play()
+
     const sceneTransition = new SceneTransition();
     sceneTransition.init(document.querySelector(".overworld"), async () => {
       this.map.overworld.startMap( window.OverworldMaps[this.event.map], {

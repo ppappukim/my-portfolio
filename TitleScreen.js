@@ -1,57 +1,73 @@
 class TitleScreen {
   constructor({ progress }) {
     this.progress = progress;
+    this.sound = null,
+    this.intro = new Howl({
+      src: [
+        'assets/sounds/intro.mp3'
+      ],
+      autoplay: true,
+      // loop: true,
+    })
   }
+
   getOptions(resolve) {
     // const safeFile = this.progress.getSaveFile();
     return [
       { 
         label: "Start",
+        description: 'Go to View Portfolio',
         handler: () => {
           this.close();
-          this.sound.sfx.gameStart.play()
-          this.sound.music.playing.play()
-          let overworld = document.getElementsByClassName("overworld")[0]
-          overworld.style.background = "#bda696"
           resolve();
         }
       },
       { 
         label: "About",
+        description: 'My name is bubbo kim',
         handler: () => {
           if (this.aboutElement) return
+
+          // Create Avout Modal
           this.creaeteAboutElement()
           let overworld = document.getElementsByClassName("overworld")[0]
           overworld.appendChild(this.aboutElement);
-          document.getElementById('aboutCloseButton').addEventListener('click', () => {
+
+          // Close Modal - ESC Key
+          this.actionListener = new KeyPressListener("Escape", () => {
+            this.aboutElement.remove()
+            this.aboutElement = null
+            this.actionListener.unbind()
+          })
+          // Close Modal - Click Mouse
+          this.aboutElement.addEventListener("click", () => {
             this.aboutElement.remove()
             this.aboutElement = null
           }, { once: true })
-          window.addEventListener('keydown', (e) => {
-            if (!this.aboutElement) return
-            if (e.keyCode !== 27) return
-            this.aboutElement.remove()
-            this.aboutElement = null
-          })
         }
       },
       { 
         label: "Contact",
+        description: 'Do you want contact me?',
         handler: () => {
           if (this.contactElement) return
+
+          // Create Conmtact Modal
           this.creaeteContactElement()
           let overworld = document.getElementsByClassName("overworld")[0]
           overworld.appendChild(this.contactElement);
-          document.getElementById('contactCloseButton').addEventListener('click', () => {
+
+          // Close Modal - ESC Key
+          this.actionListener = new KeyPressListener("Escape", () => {
+            this.contactElement.remove()
+            this.contactElement = null
+            this.actionListener.unbind()
+          })
+          // Close Modal - Click Mouse
+          this.contactElement.addEventListener("click", () => {
             this.contactElement.remove()
             this.contactElement = null
           }, { once: true })
-          window.addEventListener('keydown', (e) => {
-            if (!this.contactElement) return
-            if (e.keyCode !== 27) return
-            this.contactElement.remove()
-            this.contactElement = null
-          })
         }
       },
       // safeFile ? {
@@ -180,6 +196,7 @@ class TitleScreen {
   }
 
   close() {
+    this.intro.pause()
     this.keyboardMenu.end();
     this.element.remove();
   }
@@ -188,25 +205,27 @@ class TitleScreen {
     return new Promise(resolve => {
       this.createElement();
       this.createSoundELement()
+      
+      // Sound Element
       let overworld = document.getElementsByClassName("overworld")[0]
       overworld.style.background = "#1955D9"
-      overworld.appendChild(this.element);
       overworld.appendChild(this.soundElement);
-      
 
-      // sound
-      this.sound = new Sound();
-      this.sound.music.intro.play()
-      this.sound.volumeUpDown()
-      this.sound.volumeMute()
-
+      // Sound
+      if (!this.intro.playing()) this.intro.play()
+      this.soundGlobal = new Sound();
+      this.soundGlobal.volumeUpDown()
+      this.soundGlobal.volumeMute()
 
 
 
-      this.keyboardMenu = new KeyboardMenu();
+      // Keyboard Menu
+      this.keyboardMenu = new KeyboardMenu({});
       this.keyboardMenu.init(this.element);
       this.keyboardMenu.setOptions(this.getOptions(resolve))
+      container.appendChild(this.element);
 
+      // Create Bottom Element
       this.createScreenBottomElement()
     })
   }

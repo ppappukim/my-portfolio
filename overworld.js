@@ -37,7 +37,7 @@ class Overworld {
         return a.y - b.y;
       }).forEach(object => {
         if (object.id === "hero") return 
-        object.sprite.draw(this.canvasMap, cameraPerson);
+        object.sprite.draw(this.ctx, cameraPerson);
       })
             
       //Draw Upper layer
@@ -112,7 +112,6 @@ class Overworld {
   await this.titleScreen.init(container);
 
   // //Create a new Sound
-  // this.Sound = new Sound();
   // this.Sound.init()
 
   //Potentially load saved data
@@ -130,6 +129,10 @@ class Overworld {
   this.hud = new Hud();
   this.hud.init(container);
 
+  //Change Background Color
+  let overworld = document.getElementsByClassName("overworld")[0]
+  overworld.style.background = "#bda696"
+
   //Start the first map
   this.startMap(window.OverworldMaps[this.progress.mapId], initialHeroState );
 
@@ -144,11 +147,16 @@ class Overworld {
   this.startGameLoop();
 
 
-  // this.map.startCutscene([
-  //   { type: "battle", enemyId: "beth" }
-  //   // { type: "changeMap", map: "DemoRoom"}
-  //   // { type: "textMessage", text: "This is the very first message!"}
-  // ])
+  this.map.startCutscene([
+    // { type: "battle", enemyId: "beth" },
+    // { type: "changeMap", map: "DemoRoom"},
+    { type: "textMessage", text: "Hi! my name is kim bubbo."},
+    { type: "textMessage", text: "I'm a designer and developer."},
+    { type: "textMessage", text: "This is my portfolio world. Enjoy!"}
+  ])
+  this.sound = new Sound();
+  this.sound.sfx.gameStart.play()
+  this.sound.music.playing.play()
 
  }
 }
